@@ -1,0 +1,4512 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://dev.api.yody.io:8000/unicorn/purchase-order-service/
+    description: Generated server url
+paths:
+  /purchase-orders/{purchase_order_id}/receive-status/finish:
+    put:
+      tags:
+        - procurement-controller
+      operationId: updateStatus
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{purchase_order_id}/procurements/{procurement_id}:
+    get:
+      tags:
+        - procurement-controller
+      operationId: getDetailProcurement
+      parameters:
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: procurement_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+    put:
+      tags:
+        - procurement-controller
+      operationId: updateProcurement
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: procurement_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcurementRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+    delete:
+      tags:
+        - procurement-controller
+      operationId: delete_1
+      parameters:
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: procurement_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultString'
+  /purchase-orders/{purchase_order_id}/procurements/{procurement_id}/update-note:
+    put:
+      tags:
+        - procurement-controller
+      operationId: updateNoteProcurement
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: procurement_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcurementUpdateNoteRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultString'
+  /purchase-orders/{purchase_order_id}/procurements/{procurement_id}/confirm:
+    put:
+      tags:
+        - procurement-controller
+      operationId: confirmProcurement
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: procurement_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcurementRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{purchase_order_id}/procurements/{procurement_id}/approve:
+    put:
+      tags:
+        - procurement-controller
+      operationId: approveProcurement
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: procurement_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcurementRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{purchase_order_id}/payments/{payment_id}:
+    put:
+      tags:
+        - payment-controller
+      operationId: update
+      parameters:
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: payment_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+    delete:
+      tags:
+        - payment-controller
+      operationId: delete_2
+      parameters:
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: payment_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultString'
+  /purchase-orders/{purchase_order_id}/financial-status/finish:
+    put:
+      tags:
+        - payment-controller
+      operationId: updateStatus_1
+      parameters:
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BasicRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{id}:
+    get:
+      tags:
+        - purchase-order-controller
+      operationId: getPurchaseOrder
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+    put:
+      tags:
+        - purchase-order-controller
+      operationId: update_1
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePurchaseOrderRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{id}/notes:
+    put:
+      tags:
+        - purchase-order-controller
+      operationId: updateNotes
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateNotesRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{id}/cancel:
+    put:
+      tags:
+        - purchase-order-controller
+      operationId: cancel
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/procurements/merge/confirm:
+    put:
+      tags:
+        - procurement-controller
+      operationId: confirmProcurementMerge
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcurementRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /payment-conditions/{id}:
+    get:
+      tags:
+        - payment-condition-controller
+      operationId: getPaymentCondition
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPaymentConditionDto'
+    put:
+      tags:
+        - payment-condition-controller
+      operationId: update_2
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentConditionRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+    delete:
+      tags:
+        - payment-condition-controller
+      operationId: delete_3
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultString'
+  /purchase-orders:
+    get:
+      tags:
+        - purchase-order-controller
+      operationId: search
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 30
+        - name: sort_type
+          in: query
+          required: false
+          schema:
+            type: string
+            default: DESC
+        - name: sort_column
+          in: query
+          required: false
+          schema:
+            type: string
+            default: updated_date
+        - name: info
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: from_order_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: to_order_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: from_cancelled_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: to_cancelled_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: from_activated_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: to_activated_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: from_completed_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: to_completed_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: from_expect_import_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: to_expect_import_date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: expect_store
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: financial_status
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: receive_status
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: merchandiser
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: qc
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: cost_included
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: tax_included
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: is_have_returned
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: note
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: supplier_note
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tags
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: reference
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: ids
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPageableDtoSimplePurchaseOrderDto'
+    post:
+      tags:
+        - purchase-order-controller
+      operationId: create
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePurchaseOrderRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+    delete:
+      tags:
+        - purchase-order-controller
+      operationId: delete
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: ids
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultString'
+  /purchase-orders/{purchase_order_id}/procurements:
+    post:
+      tags:
+        - procurement-controller
+      operationId: createProcurement
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcurementRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{purchase_order_id}/procurements/merge:
+    post:
+      tags:
+        - procurement-controller
+      operationId: mergeProcurement
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcurementRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{purchase_order_id}/procurements/create-manual:
+    post:
+      tags:
+        - procurement-controller
+      operationId: createManualProcurement
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcurementRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{purchase_order_id}/payments:
+    post:
+      tags:
+        - payment-controller
+      operationId: createPayment
+      parameters:
+        - name: purchase_order_id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/{purchaseOrderId}/return:
+    post:
+      tags:
+        - purchase-order-return-controller
+      operationId: createPurchaseOrderReturn
+      parameters:
+        - name: purchaseOrderId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrderReturnRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDto'
+  /purchase-orders/migration-variant-po-lines:
+    post:
+      tags:
+        - purchase-order-controller
+      operationId: updateVariantPurchaseOrderLines
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultString'
+  /purchase-orders/migration-status-procurement-cutoff:
+    post:
+      tags:
+        - purchase-order-controller
+      operationId: migrateUpdateStatusProcurementForCutOff
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file_upload:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultListString'
+  /purchase-orders/migration-po:
+    post:
+      tags:
+        - purchase-order-controller
+      operationId: migrateDataPoFromNhanh
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file_upload:
+                  type: string
+                  format: binary
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultListString'
+  /purchase-orders-draft:
+    post:
+      tags:
+        - purchase-order-draft-controller
+      operationId: createOrUpdateDraft
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePurchaseOrderDraftRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDraftDto'
+  /payment-conditions:
+    get:
+      tags:
+        - payment-condition-controller
+      operationId: search_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultListPaymentConditionDto'
+    post:
+      tags:
+        - payment-condition-controller
+      operationId: create_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentConditionRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPaymentConditionDto'
+  /excel/job/import:
+    post:
+      tags:
+        - job-engine-controller
+      operationId: createJobImport
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateImportJobRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultJobDto'
+  /excel/job/export:
+    post:
+      tags:
+        - job-engine-controller
+      operationId: createJobExport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExportJobRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultJobDto'
+  /config:
+    post:
+      tags:
+        - purchase-order-config-controller
+      operationId: createConfigFilter
+      parameters:
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrderConfigRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderConfigDto'
+  /purchase-orders/{id}/log:
+    get:
+      tags:
+        - purchase-order-log-controller
+      summary: Lấy toàn bộ log đơn nhập hàng qua mã đơn nhập hàng
+      operationId: findAllByPurchaseOrderId
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultListPurchaseOrderLogDto'
+  /purchase-orders/procurements:
+    get:
+      tags:
+        - procurement-controller
+      operationId: searchProcurement
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 30
+        - name: sort_type
+          in: query
+          required: false
+          schema:
+            type: string
+            default: DESC
+        - name: sort_column
+          in: query
+          required: false
+          schema:
+            type: string
+            default: updatedDate
+        - name: content
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: active_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: active_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: active_by
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: stock_in_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: stock_in_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: stock_in_by
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: merchandisers
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: stores
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: is_cancel
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: suppliers
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: expect_receipt_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: expect_receipt_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPageableDtoProcurementDto'
+  /purchase-orders/procurements/merge:
+    get:
+      tags:
+        - procurement-controller
+      operationId: searchProcurementMerge
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultProcurementDto'
+  /purchase-orders/procurements/items:
+    get:
+      tags:
+        - procurement-controller
+      operationId: searchProcurement_1
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 30
+        - name: sort_type
+          in: query
+          required: false
+          schema:
+            type: string
+            default: DESC
+        - name: sort_column
+          in: query
+          required: false
+          schema:
+            type: string
+            default: updatedDate
+        - name: content
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: stores
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: stock_in_date_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: stock_in_date_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: stock_in_by
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: note
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPageableDtoProcurementItemCustomDto'
+  /purchase-orders/print-procurement:
+    get:
+      tags:
+        - purchase-order-controller
+      operationId: printProcurement
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: poId
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: storeId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: print_type
+          in: query
+          required: false
+          schema:
+            type: string
+            default: purchase_order_procurement
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ProcurementPrintForm'
+  /purchase-orders/print-forms:
+    get:
+      tags:
+        - purchase-order-controller
+      operationId: printFrom
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - name: storeId
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: print_type
+          in: query
+          required: false
+          schema:
+            type: string
+            default: purchase_order
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PurchaseOrderPrintForm'
+  /purchase-orders/log/{id}:
+    get:
+      tags:
+        - purchase-order-log-controller
+      summary: Lấy chi tiết log đơn nhập hàng
+      operationId: getPurchaseOrderDetail
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultObject'
+  /purchase-orders/list:
+    get:
+      tags:
+        - purchase-order-controller
+      operationId: getPurchaseOrder_1
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultListPurchaseOrderDto'
+  /purchase-orders/list-by-supplier/{id}:
+    get:
+      tags:
+        - purchase-order-controller
+      operationId: findAllPoBySupplierIdToCreateProcurementManual
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: condition
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultListPurchaseOrderDto'
+  /purchase-orders/almost-right:
+    get:
+      tags:
+        - purchase-order-controller
+      operationId: findPurchaseOrderAlmostRight
+      parameters:
+        - name: sku
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: supplier_id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultListPurchaseOrderDto'
+  /purchase-orders-draft/created-by/{username}:
+    get:
+      tags:
+        - purchase-order-draft-controller
+      operationId: getPurchaseOrderDraftByUsername
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderDraftDto'
+  /procurements/{code}/log:
+    get:
+      tags:
+        - purchase-order-log-controller
+      summary: Lấy toàn bộ log phiếu nhập kho theo mã phiếu nhập
+      operationId: findAllByProcurementCode
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultListPurchaseOrderLogDto'
+  /procurements/logs:
+    get:
+      tags:
+        - purchase-order-log-controller
+      summary: Lấy all phiếu nhập kho
+      operationId: getProcurementLogsDetail
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 30
+        - name: sort_type
+          in: query
+          required: false
+          schema:
+            type: string
+            default: DESC
+        - name: sort_column
+          in: query
+          required: false
+          schema:
+            type: string
+            default: updatedDate
+        - name: condition
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: created_date_from
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: created_date_to
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: x-user-name
+          in: header
+          required: false
+          schema:
+            type: string
+        - name: x-user-code
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPageableDtoPurchaseOrderLogDto'
+  /procurements/log/{id}:
+    get:
+      tags:
+        - purchase-order-log-controller
+      summary: Lấy chi tiết log phiếu nhập kho
+      operationId: getProcurementLogsDetail_1
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderLogDto'
+  /ping:
+    get:
+      tags:
+        - health-check-controller
+      operationId: ping
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /excel/job/{code}:
+    get:
+      tags:
+        - job-engine-controller
+      operationId: get
+      parameters:
+        - name: code
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultJobDto'
+  /config/{userCode}:
+    get:
+      tags:
+        - purchase-order-config-controller
+      operationId: getConfigs
+      parameters:
+        - name: userCode
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultListPurchaseOrderConfigDto'
+  /config/{id}:
+    delete:
+      tags:
+        - purchase-order-config-controller
+      operationId: deleteConfig
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ResultPurchaseOrderConfigDto'
+components:
+  schemas:
+    AddressDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        tax_code:
+          type: string
+        country_id:
+          type: integer
+          format: int64
+        country:
+          type: string
+        city_id:
+          type: integer
+          format: int64
+        city:
+          type: string
+        district_id:
+          type: integer
+          format: int64
+        district:
+          type: string
+        ward_id:
+          type: integer
+          format: int64
+        ward:
+          type: string
+        zip_code:
+          type: string
+        full_address:
+          type: string
+        bank_number:
+          type: string
+        bank_name:
+          type: string
+        beneficiary:
+          type: string
+        position:
+          type: string
+    CostDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        title:
+          type: string
+        amount:
+          type: number
+    PaymentDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        account_code:
+          type: string
+        amount:
+          type: number
+        reference:
+          type: string
+        payment_method_code:
+          type: string
+        payment_method:
+          type: string
+        status:
+          type: string
+        status_name:
+          type: string
+        note:
+          type: string
+        is_refund:
+          type: boolean
+        purchase_order_id:
+          type: integer
+          format: int64
+        transaction_date:
+          type: string
+          format: date-time
+        transaction_date_string:
+          type: string
+    PaymentRefundsDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        account_code:
+          type: string
+        amount:
+          type: number
+        reference:
+          type: string
+        payment_method_code:
+          type: string
+        status:
+          type: string
+        status_name:
+          type: string
+        note:
+          type: string
+        purchase_order_id:
+          type: integer
+          format: int64
+        transaction_date:
+          type: string
+          format: date-time
+    ProcurementDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        reference:
+          type: string
+        store_id:
+          type: integer
+          format: int64
+        store:
+          type: string
+        expect_receipt_date:
+          type: string
+          format: date-time
+        note:
+          type: string
+        status:
+          type: string
+        status_name:
+          type: string
+        activated_date:
+          type: string
+          format: date-time
+        activated_by:
+          type: string
+        stock_in_date:
+          type: string
+          format: date-time
+        stock_in_by:
+          type: string
+        is_cancelled:
+          type: boolean
+        created_date_str:
+          type: string
+        purchase_order:
+          $ref: '#/components/schemas/PurchaseOrderProcurementDto'
+        procurement_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcurementItemDto'
+    ProcurementItemDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        line_item_id:
+          type: integer
+          format: int64
+        sku:
+          type: string
+        barcode:
+          type: string
+        variant:
+          type: string
+        variant_image:
+          type: string
+        variant_id:
+          type: integer
+          format: int64
+        retail_price:
+          type: number
+        ordered_quantity:
+          type: number
+        accepted_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        quantity:
+          type: number
+        real_quantity:
+          type: number
+        note:
+          type: string
+        price:
+          type: number
+        vat:
+          type: number
+        vat_rate:
+          type: number
+          format: float
+        amount:
+          type: number
+    ProductCompositeDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        variant_id:
+          type: integer
+          format: int64
+        sub_variant_id:
+          type: integer
+          format: int64
+        quantity:
+          type: number
+    ProductVariantDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        category_id:
+          type: integer
+          format: int64
+        category:
+          type: string
+        material_id:
+          type: integer
+          format: int64
+        goods:
+          type: string
+        material:
+          type: string
+        brand:
+          type: string
+        brand_name:
+          type: string
+        made_in_id:
+          type: integer
+          format: int64
+        made_in:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+        merchandiser_code:
+          type: string
+        designer_code:
+          type: string
+        merchandiser:
+          type: string
+        designer:
+          type: string
+        tags:
+          type: string
+        status:
+          type: string
+        status_name:
+          type: string
+        name:
+          type: string
+        care_labels:
+          type: string
+        unit:
+          type: string
+        specifications:
+          type: string
+        product_type:
+          type: string
+        product_collections:
+          type: array
+          items:
+            type: string
+    PurchaseOrderDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        company_id:
+          type: integer
+          format: int64
+        merchandiser_code:
+          type: string
+        merchandiser:
+          type: string
+        designer_code:
+          type: string
+        designer:
+          type: string
+        qc_code:
+          type: string
+        qc:
+          type: string
+        reference:
+          type: string
+        type:
+          type: string
+        supplier_id:
+          type: integer
+          format: int64
+        supplier_code:
+          type: string
+        supplier:
+          type: string
+        billing_address:
+          $ref: '#/components/schemas/AddressDto'
+        supplier_address:
+          $ref: '#/components/schemas/AddressDto'
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLineDto'
+        return_orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderReturnDto'
+        phone:
+          type: string
+        supplier_note:
+          type: string
+        expect_import_date:
+          type: string
+          format: date-time
+        expect_return_date:
+          type: string
+          format: date-time
+        expect_store_id:
+          type: integer
+          format: int64
+        expect_store:
+          type: string
+        payment_condition_id:
+          type: integer
+          format: int64
+        payment_condition_name:
+          type: string
+        payment_note:
+          type: string
+        note:
+          type: string
+        tags:
+          type: string
+        policy_price_code:
+          type: string
+        tax_included:
+          type: boolean
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentDto'
+        payment_refunds:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRefundsDto'
+        procurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcurementDto'
+        cost_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostDto'
+        total_cost_line:
+          type: number
+        tax_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxLineDto'
+        payment_discount_rate:
+          type: number
+        payment_discount_value:
+          type: number
+        payment_discount_amount:
+          type: number
+        trade_discount_rate:
+          type: number
+        trade_discount_value:
+          type: number
+        trade_discount_amount:
+          type: number
+        untaxed_amount:
+          type: number
+        untaxed_amount_refunds:
+          type: number
+        tax:
+          type: number
+        total:
+          type: number
+        total_payment:
+          type: number
+        total_paid:
+          type: number
+        total_refunds:
+          type: number
+        receipt_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        status:
+          type: string
+        status_name:
+          type: string
+        financial_status:
+          type: string
+        receive_status:
+          type: string
+        cancel_reason:
+          type: string
+        order_date:
+          type: string
+          format: date-time
+        order_date_string:
+          type: string
+        cancelled_date:
+          type: string
+          format: date-time
+        activated_date:
+          type: string
+          format: date-time
+        completed_date:
+          type: string
+          format: date-time
+        completed_stock_date:
+          type: string
+          format: date-time
+        is_grid_mode:
+          type: boolean
+        is_grid_mode_supplement:
+          type: boolean
+        receive_finished_date:
+          type: string
+          format: date-time
+        waiting_approval_date:
+          type: string
+          format: date-time
+    PurchaseOrderLineDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        sku:
+          type: string
+        barcode:
+          type: string
+        variant_id:
+          type: integer
+          format: int64
+        variant_detail:
+          $ref: '#/components/schemas/VariantDetailDto'
+        product_id:
+          type: integer
+          format: int64
+        product:
+          type: string
+        variant:
+          type: string
+        retail_price:
+          type: number
+        product_type:
+          type: string
+        quantity:
+          type: number
+        receipt_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        price:
+          type: number
+        amount:
+          type: number
+        note:
+          type: string
+        type:
+          type: string
+        variant_image:
+          type: string
+        unit:
+          type: string
+        tax:
+          type: number
+        tax_rate:
+          type: number
+          format: float
+        line_amount_after_line_discount:
+          type: number
+        discount_rate:
+          type: number
+        discount_value:
+          type: number
+        discount_amount:
+          type: number
+        position:
+          type: integer
+          format: int32
+        purchase_order_id:
+          type: integer
+          format: int64
+    PurchaseOrderLineReturnDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        sku:
+          type: string
+        barcode:
+          type: string
+        variant_id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        product:
+          type: string
+        variant:
+          type: string
+        retail_price:
+          type: number
+        product_type:
+          type: string
+        quantity:
+          type: number
+        quantity_return:
+          type: number
+        receipt_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        price:
+          type: number
+        amount:
+          type: number
+        note:
+          type: string
+        type:
+          type: string
+        variant_image:
+          type: string
+        unit:
+          type: string
+        tax:
+          type: number
+        tax_rate:
+          type: number
+          format: float
+        line_amount_after_line_discount:
+          type: number
+        discount_rate:
+          type: number
+        discount_value:
+          type: number
+        discount_amount:
+          type: number
+        position:
+          type: integer
+          format: int32
+        untaxed_amount_refunds:
+          type: number
+        amount_tax_refunds:
+          type: number
+        return_reason:
+          type: string
+        payment_return_note:
+          type: string
+        purchase_order_id:
+          type: integer
+          format: int64
+    PurchaseOrderProcurementDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        company_id:
+          type: integer
+          format: int64
+        merchandiser_code:
+          type: string
+        merchandiser:
+          type: string
+        designer_code:
+          type: string
+        designer:
+          type: string
+        qc_code:
+          type: string
+        qc:
+          type: string
+        reference:
+          type: string
+        type:
+          type: string
+        code:
+          type: string
+        supplier_id:
+          type: integer
+          format: int64
+        supplier_code:
+          type: string
+        supplier:
+          type: string
+        phone:
+          type: string
+    PurchaseOrderReturnDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        line_return_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLineReturnDto'
+        expect_return_date:
+          type: string
+          format: date-time
+        store_id:
+          type: integer
+          format: int64
+        untaxed_amount_refunds:
+          type: number
+        amount_tax_refunds:
+          type: number
+        total_refunds:
+          type: number
+        return_reason:
+          type: string
+        payment_return_note:
+          type: string
+    ResultPurchaseOrderDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PurchaseOrderDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    TaxLineDto:
+      type: object
+      properties:
+        rate:
+          type: number
+          format: float
+        amount:
+          type: number
+    VariantDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        on_hand:
+          type: number
+        available:
+          type: number
+        committed:
+          type: number
+        in_coming:
+          type: number
+        on_way:
+          type: number
+        on_hold:
+          type: number
+        defect:
+          type: number
+        transferring:
+          type: number
+        shipping:
+          type: number
+        total_stock:
+          type: number
+        supplier_id:
+          type: integer
+          format: int64
+        supplier:
+          type: string
+        color_id:
+          type: integer
+          format: int64
+        color:
+          type: string
+        size_id:
+          type: integer
+          format: int64
+        size:
+          type: string
+        barcode:
+          type: string
+        reference_id:
+          type: integer
+          format: int64
+        taxable:
+          type: boolean
+        saleable:
+          type: boolean
+        sku:
+          type: string
+        status:
+          type: string
+        status_name:
+          type: string
+        composite:
+          type: boolean
+        width:
+          type: number
+        length:
+          type: number
+        height:
+          type: number
+        weight:
+          type: number
+        weight_unit:
+          type: string
+        length_unit:
+          type: string
+        product_id:
+          type: integer
+          format: int64
+        product:
+          $ref: '#/components/schemas/ProductVariantDto'
+        variant_prices:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantPriceDto'
+        variant_images:
+          type: array
+          items:
+            $ref: '#/components/schemas/VariantImageDto'
+        composites:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductCompositeDto'
+    VariantImageDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        variant_id:
+          type: integer
+          format: int64
+        position:
+          type: integer
+          format: int32
+        image_id:
+          type: integer
+          format: int64
+        url:
+          type: string
+        product_avatar:
+          type: boolean
+        variant_avatar:
+          type: boolean
+    VariantPriceDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        retail_price:
+          type: number
+        variant_id:
+          type: integer
+          format: int64
+        currency_code:
+          type: string
+        currency_symbol:
+          type: string
+        tax_percent:
+          type: number
+          format: float
+        cost_price:
+          type: number
+        import_price:
+          type: number
+        wholesale_price:
+          type: number
+    ProcurementItemRequest:
+      required:
+        - line_item_id
+        - quantity
+        - sku
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        line_item_id:
+          type: integer
+          format: int64
+        sku:
+          type: string
+        barcode:
+          type: string
+        variant:
+          type: string
+        variant_image:
+          type: string
+        variant_id:
+          type: integer
+          format: int64
+        retail_price:
+          type: number
+        ordered_quantity:
+          type: number
+        accepted_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        quantity:
+          type: number
+        real_quantity:
+          type: number
+        note:
+          type: string
+        procurement_id:
+          type: integer
+          format: int64
+    ProcurementRequest:
+      required:
+        - status
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        reference:
+          type: string
+        store_id:
+          type: integer
+          format: int64
+        store:
+          type: string
+        expect_receipt_date:
+          type: string
+          format: date-time
+        note:
+          type: string
+        status:
+          type: string
+        status_name:
+          type: string
+        activated_date:
+          type: string
+          format: date-time
+        activated_by:
+          type: string
+        stock_in_date:
+          type: string
+          format: date-time
+        stock_in_by:
+          type: string
+        procurement_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcurementItemRequest'
+        refer_ids:
+          type: array
+          items:
+            type: integer
+            format: int64
+    ProcurementUpdateNoteRequest:
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        note:
+          type: string
+    ResultString:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: string
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    PaymentRequest:
+      required:
+        - amount
+        - is_refund
+        - status
+        - transaction_date
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        amount:
+          type: number
+        reference:
+          type: string
+        payment_method_code:
+          type: string
+        status:
+          type: string
+        status_name:
+          type: string
+        transaction_date:
+          type: string
+          format: date-time
+        is_refund:
+          type: boolean
+        purchase_order_id:
+          type: integer
+          format: int64
+        note:
+          type: string
+    BasicRequest:
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+    AddressRequest:
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        email:
+          type: string
+        phone:
+          pattern: ^$|^\d{8,14}$
+          type: string
+        tax_code:
+          type: string
+        country_id:
+          type: integer
+          format: int64
+        country:
+          type: string
+        city_id:
+          type: integer
+          format: int64
+        city:
+          type: string
+        district_id:
+          type: integer
+          format: int64
+        district:
+          type: string
+        ward_id:
+          type: integer
+          format: int64
+        ward:
+          type: string
+        zip_code:
+          type: string
+        full_address:
+          type: string
+        bank_number:
+          type: string
+        bank_name:
+          type: string
+        beneficiary:
+          type: string
+        position:
+          type: string
+    CostRequest:
+      required:
+        - amount
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        amount:
+          type: number
+    PurchaseOrderLineRequest:
+      required:
+        - quantity
+        - sku
+        - variant
+        - variant_id
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        sku:
+          type: string
+        variant_id:
+          type: integer
+          format: int64
+        barcode:
+          type: string
+        product_id:
+          type: integer
+          format: int64
+        product:
+          type: string
+        variant:
+          type: string
+        retail_price:
+          type: number
+        product_type:
+          type: string
+        quantity:
+          type: number
+        receipt_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        price:
+          type: number
+        amount:
+          type: number
+        note:
+          type: string
+        type:
+          type: string
+        variant_image:
+          type: string
+        unit:
+          type: string
+        tax:
+          type: number
+        tax_rate:
+          type: number
+          format: float
+        line_amount_after_line_discount:
+          type: number
+        discount_rate:
+          type: number
+        discount_value:
+          type: number
+        discount_amount:
+          type: number
+        position:
+          type: integer
+          format: int32
+        purchase_order_id:
+          type: integer
+          format: int64
+    UpdatePurchaseOrderRequest:
+      required:
+        - line_items
+        - merchandiser_code
+        - supplier_id
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        company_id:
+          type: integer
+          format: int64
+        merchandiser_code:
+          type: string
+        merchandiser:
+          type: string
+        designer_code:
+          type: string
+        designer:
+          type: string
+        qc_code:
+          type: string
+        qc:
+          type: string
+        reference:
+          type: string
+        type:
+          type: string
+        supplier_id:
+          type: integer
+          format: int64
+        supplier_code:
+          type: string
+        supplier:
+          type: string
+        phone:
+          type: string
+        supplier_note:
+          maxLength: 500
+          minLength: 0
+          type: string
+        billing_address:
+          $ref: '#/components/schemas/AddressRequest'
+        supplier_address:
+          $ref: '#/components/schemas/AddressRequest'
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLineRequest'
+        expect_import_date:
+          type: string
+          format: date-time
+        expect_store_id:
+          type: integer
+          format: int64
+        expect_store:
+          type: string
+        payment_condition_id:
+          type: integer
+          format: int64
+        payment_condition_name:
+          type: string
+        payment_note:
+          type: string
+        note:
+          maxLength: 500
+          minLength: 0
+          type: string
+        tags:
+          type: string
+        policy_price_code:
+          type: string
+        tax_included:
+          type: boolean
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRequest'
+        procurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcurementRequest'
+        payment_discount_rate:
+          type: number
+        payment_discount_value:
+          type: number
+        payment_discount_amount:
+          type: number
+        trade_discount_rate:
+          type: number
+        trade_discount_value:
+          type: number
+        trade_discount_amount:
+          type: number
+        cost_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostRequest'
+        untaxed_amount:
+          type: number
+        tax:
+          type: number
+        total:
+          type: number
+        total_paid:
+          type: number
+        total_refunds:
+          type: number
+        receipt_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        status:
+          type: string
+        financial_status:
+          type: string
+        receive_status:
+          type: string
+        cancel_reason:
+          type: string
+        is_grid_mode:
+          type: boolean
+        is_grid_mode_supplement:
+          type: boolean
+        version:
+          type: integer
+          format: int32
+    UpdateNotesRequest:
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        note:
+          maxLength: 500
+          minLength: 0
+          type: string
+        supplier_note:
+          maxLength: 500
+          minLength: 0
+          type: string
+    PaymentConditionRequest:
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        code:
+          type: string
+        timeout:
+          type: integer
+          format: int32
+        note:
+          type: string
+        default:
+          type: boolean
+    CreatePurchaseOrderRequest:
+      required:
+        - line_items
+        - merchandiser_code
+        - supplier_id
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        company_id:
+          type: integer
+          format: int64
+        merchandiser_code:
+          type: string
+        merchandiser:
+          type: string
+        designer_code:
+          type: string
+        designer:
+          type: string
+        qc_code:
+          type: string
+        qc:
+          type: string
+        reference:
+          type: string
+        type:
+          type: string
+        supplier_id:
+          type: integer
+          format: int64
+        supplier_code:
+          type: string
+        supplier:
+          type: string
+        phone:
+          type: string
+        supplier_note:
+          maxLength: 500
+          minLength: 0
+          type: string
+        billing_address:
+          $ref: '#/components/schemas/AddressRequest'
+        supplier_address:
+          $ref: '#/components/schemas/AddressRequest'
+        line_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLineRequest'
+        expect_import_date:
+          type: string
+          format: date-time
+        expect_store_id:
+          type: integer
+          format: int64
+        expect_store:
+          type: string
+        payment_condition_id:
+          type: integer
+          format: int64
+        payment_condition_name:
+          type: string
+        payment_note:
+          type: string
+        note:
+          maxLength: 500
+          minLength: 0
+          type: string
+        tags:
+          type: string
+        policy_price_code:
+          type: string
+        tax_included:
+          type: boolean
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRequest'
+        procurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcurementRequest'
+        payment_discount_rate:
+          type: number
+        payment_discount_value:
+          type: number
+        payment_discount_amount:
+          type: number
+        trade_discount_rate:
+          type: number
+        trade_discount_value:
+          type: number
+        trade_discount_amount:
+          type: number
+        cost_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostRequest'
+        untaxed_amount:
+          type: number
+        tax:
+          type: number
+        total:
+          type: number
+        total_paid:
+          type: number
+        total_refunds:
+          type: number
+        receipt_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        status:
+          type: string
+        financial_status:
+          type: string
+        receive_status:
+          type: string
+        cancel_reason:
+          type: string
+        is_grid_mode:
+          type: boolean
+        is_grid_mode_supplement:
+          type: boolean
+    PurchaseOrderLineReturnRequest:
+      required:
+        - price
+        - quantity
+        - quantity_return
+        - sku
+        - variant
+        - variant_id
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        sku:
+          type: string
+        barcode:
+          type: string
+        variant_id:
+          type: integer
+          format: int64
+        product_id:
+          type: integer
+          format: int64
+        product:
+          type: string
+        variant:
+          type: string
+        retail_price:
+          type: number
+        product_type:
+          type: string
+        quantity:
+          type: number
+        quantity_return:
+          type: number
+        receipt_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        price:
+          type: number
+        amount:
+          type: number
+        note:
+          type: string
+        type:
+          type: string
+        variant_image:
+          type: string
+        unit:
+          type: string
+        tax:
+          type: number
+        tax_rate:
+          type: number
+          format: float
+        line_amount_after_line_discount:
+          type: number
+        discount_rate:
+          type: number
+        discount_value:
+          type: number
+        discount_amount:
+          type: number
+        position:
+          type: integer
+          format: int32
+        purchase_order_id:
+          type: integer
+          format: int64
+    PurchaseOrderReturnRequest:
+      required:
+        - expect_return_date
+        - line_return_items
+        - return_reason
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        store_id:
+          type: integer
+          format: int64
+        line_return_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLineReturnRequest'
+        expect_return_date:
+          type: string
+          format: date-time
+        untaxed_amount_refunds:
+          type: number
+        amount_tax_refunds:
+          type: number
+        total_refunds:
+          type: number
+        return_reason:
+          type: string
+        payment_return_note:
+          type: string
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentRequest'
+    ResultListString:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            type: string
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    CreatePurchaseOrderDraftRequest:
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        data:
+          type: string
+    PurchaseOrderDraftDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        data:
+          type: string
+    ResultPurchaseOrderDraftDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PurchaseOrderDraftDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    PaymentConditionDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        timeout:
+          type: integer
+          format: int32
+        note:
+          type: string
+        default:
+          type: boolean
+    ResultPaymentConditionDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PaymentConditionDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    CreateImportJobRequest:
+      required:
+        - url
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        conditions:
+          type: string
+        type:
+          type: string
+        hidden_fields:
+          type: string
+        url:
+          type: string
+        note:
+          type: string
+    JobDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        name:
+          type: string
+        status:
+          type: string
+        num_of_record:
+          type: integer
+          format: int32
+        total:
+          type: integer
+          format: int64
+        url:
+          type: string
+        total_process:
+          type: integer
+          format: int64
+        processed:
+          type: integer
+          format: int64
+        success:
+          type: integer
+          format: int64
+        percent:
+          type: integer
+          format: int64
+        error:
+          type: integer
+          format: int64
+        message:
+          type: array
+          items:
+            type: object
+        note:
+          type: string
+    ResultJobDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/JobDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    CreateExportJobRequest:
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        conditions:
+          type: string
+        type:
+          type: string
+        hidden_fields:
+          type: string
+        url:
+          type: string
+        url_template:
+          type: string
+    PurchaseOrderConfigRequest:
+      required:
+        - type
+      type: object
+      properties:
+        created_by:
+          type: string
+        created_name:
+          type: string
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        request_id:
+          type: string
+        operator_kc_id:
+          type: string
+        id:
+          type: integer
+          format: int64
+        json_content:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+    PurchaseOrderConfigDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        status:
+          type: string
+        json_content:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+    ResultPurchaseOrderConfigDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PurchaseOrderConfigDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    Metadata:
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+    PageableDtoSimplePurchaseOrderDto:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimplePurchaseOrderDto'
+    ResultPageableDtoSimplePurchaseOrderDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageableDtoSimplePurchaseOrderDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    SimpleProcurementDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        reference:
+          type: string
+        storeId:
+          type: integer
+          format: int64
+        store:
+          type: string
+        expectReceiptDate:
+          type: string
+          format: date-time
+        note:
+          type: string
+        status:
+          type: string
+        statusName:
+          type: string
+        activatedDate:
+          type: string
+          format: date-time
+        activatedBy:
+          type: string
+        stockInDate:
+          type: string
+          format: date-time
+        stockInBy:
+          type: string
+        isCancelled:
+          type: boolean
+        purchaseOrderId:
+          type: integer
+          format: int64
+    SimplePurchaseOrderDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        companyId:
+          type: integer
+          format: int64
+        merchandiserCode:
+          type: string
+        merchandiser:
+          type: string
+        designerCode:
+          type: string
+        designer:
+          type: string
+        qcCode:
+          type: string
+        qc:
+          type: string
+        reference:
+          type: string
+        type:
+          type: string
+        code:
+          type: string
+        supplierId:
+          type: integer
+          format: int64
+        supplierCode:
+          type: string
+        supplier:
+          type: string
+        phone:
+          type: string
+        supplierNote:
+          type: string
+        expectImportDate:
+          type: string
+          format: date-time
+        expectReturnDate:
+          type: string
+          format: date-time
+        expectStoreId:
+          type: integer
+          format: int64
+        expectStore:
+          type: string
+        paymentConditionId:
+          type: integer
+          format: int64
+        paymentConditionName:
+          type: string
+        paymentNote:
+          type: string
+        note:
+          type: string
+        tags:
+          type: string
+        policyPriceCode:
+          type: string
+        taxIncluded:
+          type: boolean
+        paymentDiscountRate:
+          type: number
+        paymentDiscountValue:
+          type: number
+        paymentDiscountAmount:
+          type: number
+        tradeDiscountRate:
+          type: number
+        tradeDiscountValue:
+          type: number
+        tradeDiscountAmount:
+          type: number
+        untaxedAmount:
+          type: number
+        untaxedAmountRefunds:
+          type: number
+        tax:
+          type: number
+        total:
+          type: number
+        totalPayment:
+          type: number
+        totalPaid:
+          type: number
+        totalRefunds:
+          type: number
+        receiptQuantity:
+          type: number
+        plannedQuantity:
+          type: number
+        status:
+          type: string
+        financialStatus:
+          type: string
+        receiveStatus:
+          type: string
+        cancelReason:
+          type: string
+        orderDate:
+          type: string
+          format: date-time
+        cancelledDate:
+          type: string
+          format: date-time
+        activatedDate:
+          type: string
+          format: date-time
+        completedDate:
+          type: string
+          format: date-time
+        completedStockDate:
+          type: string
+          format: date-time
+        createdDate:
+          type: string
+          format: date-time
+        updatedDate:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        createdName:
+          type: string
+        updatedBy:
+          type: string
+        updatedName:
+          type: string
+        procurements:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimpleProcurementDto'
+    PurchaseOrderLogDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        root_id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        updated_name:
+          type: string
+        updated_by:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        created_name:
+          type: string
+        created_by:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        data:
+          type: string
+        action:
+          type: string
+        status_before:
+          type: string
+        status_after:
+          type: string
+        ip_address:
+          type: string
+        device:
+          type: string
+        procurement_code:
+          type: string
+    ResultListPurchaseOrderLogDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLogDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    PageableDtoProcurementDto:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcurementDto'
+    ResultPageableDtoProcurementDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageableDtoProcurementDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    ResultProcurementDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/ProcurementDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    PageableDtoProcurementItemCustomDto:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcurementItemCustomDto'
+    ProcurementCustomDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        reference:
+          type: string
+        store_id:
+          type: integer
+          format: int64
+        store:
+          type: string
+        expect_receipt_date:
+          type: string
+          format: date-time
+        note:
+          type: string
+        status:
+          type: string
+        status_name:
+          type: string
+        activated_date:
+          type: string
+          format: date-time
+        activated_by:
+          type: string
+        stock_in_date:
+          type: string
+          format: date-time
+        stock_in_by:
+          type: string
+        is_cancelled:
+          type: boolean
+        purchase_order:
+          $ref: '#/components/schemas/PurchaseOrderProcurementDto'
+    ProcurementItemCustomDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        code:
+          type: string
+        version:
+          type: integer
+          format: int32
+        created_by:
+          type: string
+        created_name:
+          type: string
+        created_date:
+          type: string
+          format: date-time
+        updated_by:
+          type: string
+        updated_name:
+          type: string
+        updated_date:
+          type: string
+          format: date-time
+        line_item_id:
+          type: integer
+          format: int64
+        sku:
+          type: string
+        barcode:
+          type: string
+        product_id:
+          type: integer
+          format: int64
+        variant_id:
+          type: integer
+          format: int64
+        variant:
+          type: string
+        variant_image:
+          type: string
+        ordered_quantity:
+          type: number
+        accepted_quantity:
+          type: number
+        planned_quantity:
+          type: number
+        quantity:
+          type: number
+        real_quantity:
+          type: number
+        note:
+          type: string
+        procurement:
+          $ref: '#/components/schemas/ProcurementCustomDto'
+    ResultPageableDtoProcurementItemCustomDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageableDtoProcurementItemCustomDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    ProcurementPrintForm:
+      type: object
+      properties:
+        procurementId:
+          type: integer
+          format: int64
+        htmlContent:
+          type: string
+        size:
+          type: string
+    PurchaseOrderPrintForm:
+      type: object
+      properties:
+        purchaseOrderId:
+          type: integer
+          format: int64
+        htmlContent:
+          type: string
+        size:
+          type: string
+    ResultObject:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: object
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    ResultListPurchaseOrderDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    PageableDtoPurchaseOrderLogDto:
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderLogDto'
+    ResultPageableDtoPurchaseOrderLogDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PageableDtoPurchaseOrderLogDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    ResultPurchaseOrderLogDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/PurchaseOrderLogDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    ResultListPaymentConditionDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentConditionDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
+    ResultListPurchaseOrderConfigDto:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseOrderConfigDto'
+        response_time:
+          type: string
+          format: date-time
+        errors:
+          type: array
+          items:
+            type: string
+        request_id:
+          type: string
