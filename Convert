@@ -1,1 +1,1 @@
-./swagger2slate.phar convert ../ Yody/PO.yaml  -o PO.md
+PO.yaml PO.yml
