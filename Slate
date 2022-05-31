@@ -1,2 +1,13 @@
+git clone --depth 1 git@github.com:{your-name}/{your-repository} {your-repository}-docs # create folder to store docs
+cd {your-repository}-docs
+git remote add slate git@github.com:tripit/slate.git # add slate origin to pull from
+git fetch slate
+git checkout --orphan slate slate/master # create slate branch with slate/master contents
+git commit -m "first slate commit"
+
+bundle install --path vendor/bundle
+echo -e "\nvendor/" >> .gitignore
+
 chmod +x swagger2slate.phar
 echo -e "\nswagger2slate.phar" >> .gitignore
+./swagger2slate.phar convert ../{your-repository}/swagger.json  -o source/index.md
