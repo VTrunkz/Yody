@@ -1,0 +1,2 @@
+chmod +x swagger2slate.phar
+echo -e "\nswagger2slate.phar" >> .gitignore
